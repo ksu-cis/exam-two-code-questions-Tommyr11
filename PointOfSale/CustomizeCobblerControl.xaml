@@ -7,6 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock>Customize Cobbler</TextBlock>
+        <StackPanel Orientation="Vertical">
+            <TextBlock HorizontalAlignment="Center" FontSize="30">Customize Cobbler</TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox IsChecked="{Binding WithIceCream}"/>
+                <TextBlock FontSize="20" Text="Ice Cream"/>
+            </StackPanel>
+            <TextBlock></TextBlock>
+            <StackPanel Orientation="Vertical">
+                <RadioButton GroupName="s" Name="SmallRadioButton" FontSize="10" Tag="c">Cherry</RadioButton>
+                <RadioButton GroupName="s" Name="MediumRadioButton" FontSize="10" Tag="b">Blueberry</RadioButton>
+                <RadioButton GroupName="s" Name="LargeRadioButton" FontSize="10" Tag="p">Peach</RadioButton>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>

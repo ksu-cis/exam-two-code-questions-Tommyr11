@@ -1,6 +1,7 @@
 using System;
 using ExamTwoCodeQuestions.Data;
 using Xunit;
+using System.ComponentModel;
 
 namespace ExamTwoCodeQuestions.DataTests
 {
@@ -71,6 +72,47 @@ namespace ExamTwoCodeQuestions.DataTests
         {
             var cobbler = new Cobbler();
             Assert.IsAssignableFrom<IOrderItem>(cobbler);
+        }
+        [Fact]
+        public void CobblerShouldImplementINotifyPropertyChanged()
+        {
+            var c = new Cobbler();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(c);
+        }
+        [Fact]
+        public void ChangingWithIceCreamPropertyShouldInvokePropertyChangedForWithIceCream()
+        {
+            var c = new Cobbler();
+            Assert.PropertyChanged(c, "WithIceCream", () => {
+                c.WithIceCream = false;
+            });
+        }
+        [Fact]
+        public void ChangingWithIceCreamPropertyShouldInvokePropertyChangedForPrice()
+        {
+            var c = new Cobbler();
+            Assert.PropertyChanged(c, "Price", () => {
+                c.WithIceCream = false;
+            });
+        }
+        [Theory]
+        [InlineData(FruitFilling.Peach)]
+        [InlineData(FruitFilling.Blueberry)]
+        [InlineData(FruitFilling.Cherry)]
+        public void ChangingFruitPropertyShouldInvokePropertyChangedForFruit(FruitFilling fruitFilling)
+        {
+            var c = new Cobbler();
+            Assert.PropertyChanged(c, "Fruit", () => {
+                c.Fruit = fruitFilling;
+            });
+        }
+        [Fact]
+        public void ChangingWithIceCreamPropertyShouldInvokePropertyChangedForSpecialInstructions()
+        {
+            var c = new Cobbler();
+            Assert.PropertyChanged(c, "SpecialInstructions", () => {
+                c.WithIceCream = false;
+            });
         }
     }
 }
